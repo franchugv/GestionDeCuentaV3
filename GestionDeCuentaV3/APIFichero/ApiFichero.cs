@@ -12,45 +12,95 @@ namespace GestionDeCuentaV3.APIFichero
         private const string PATH = "cuentas\\";
 
 
-
-        public static void EscribirFichero(string numcuenta, string Datos)
+        private static bool VerificarExsitencia(string numcuenta, Cuenta cuenta)
         {
 
-            if (!File.Exists(GenerarNombre(numcuenta))) AgregarFichero(numcuenta);
+            bool esValido = true;
+
+            if (!File.Exists(GenerarNombre(numcuenta, cuenta))) esValido = false;
+
+            return esValido;
+        }
 
 
 
-            File.AppendAllText(GenerarNombre(numcuenta), Datos);
+
+        public static string ConsultarFichero(string numcuenta, Cuenta cuenta)
+        {
+            // Recursos
+            StreamReader lector;
+            string cadena = "";
+
+            lector = File.OpenText(GenerarNombre(numcuenta, cuenta));
+            cadena = lector.ReadToEnd();
+
+            lector.Close();
+
+            return cadena;
 
         }
 
-        public static void EliminarFichero(string numcuenta)
-        {
-            // Borrar Fichero
 
-            File.Delete(GenerarNombre(numcuenta));
-        }
 
-        public static void EditarFichero(string numcuenta, string numcuentaAntiguo, string Datos)
-        {
-            if (File.Exists(GenerarNombre(numcuentaAntiguo))) EliminarFichero(numcuenta);
-
-            EscribirFichero(numcuenta, Datos);
-        }
-
-        private static string GenerarNombre(string nc)
-        {
-            return PATH + nc + ".txt";
-        }
-
-        private static void AgregarFichero(string numcuenta)
+        private static void AgregarFichero(string numcuenta, Cuenta cuenta)
         {
             StreamWriter escritor;
 
             if (!Directory.Exists(PATH)) Directory.CreateDirectory(PATH);
 
-            escritor = File.CreateText(GenerarNombre(numcuenta));
+
+
+            escritor = File.CreateText(GenerarNombre(numcuenta, cuenta));
             escritor.Close();
         }
+
+        public static void EscribirFichero(string numcuenta, string Datos, Cuenta cuenta)
+        {
+
+            if (!File.Exists(GenerarNombre(numcuenta, cuenta))) AgregarFichero(numcuenta, cuenta);
+
+
+
+            File.AppendAllText(GenerarNombre(numcuenta, cuenta), Datos);
+
+        }
+
+        public static void EliminarFichero(string numcuenta, Cuenta cuenta)
+        {
+            // Borrar Fichero
+
+            File.Delete(GenerarNombre(numcuenta, cuenta));
+        }
+
+        public static void EditarFichero(string numcuenta, string numcuentaAntiguo, string Datos, Cuenta cuenta)
+        {
+            if (File.Exists(GenerarNombre(numcuentaAntiguo, cuenta))) EliminarFichero(numcuenta, cuenta);
+
+            EscribirFichero(numcuenta, Datos, cuenta);
+        }
+
+        private static string GenerarNombre(string numcuenta, Cuenta cuenta)
+        {
+
+            string nombre = "";
+
+            if (cuenta is CuentaJoven)
+            {
+                nombre = PATH + numcuenta + ".jov";
+            }
+
+            if (cuenta is CuentaOro)
+            {
+                nombre = PATH + numcuenta + ".oro";
+            }
+
+            if (cuenta is CuentaPlatino)
+            {
+                nombre = PATH + numcuenta + ".pla";
+            }
+            return nombre;
+        }
+
+
     }
 }

@@ -196,5 +196,11 @@ namespace GestionDeCuentaV3.Principal
             
         }
 
+        public static void MostrarDato(string cadena)
+        {
+            Console.WriteLine(cadena);
+            Pausa();
+        }
+
     }
 }

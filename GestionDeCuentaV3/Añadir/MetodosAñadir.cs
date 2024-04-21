@@ -23,7 +23,7 @@ namespace GestionDeCuentaV3.Añadir
             cadena = $"{titular}\n{ingreso}\n{fechanac}\n{numcuenta}";
 
 
-            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena);
+            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena, Cuentas);
 
             // Asignar datos a la lista de cuentas
 
@@ -44,7 +44,7 @@ namespace GestionDeCuentaV3.Añadir
             cadena = $"{titular}\n{ingreso}\n{fechanac}\n{numcuenta}";
 
 
-            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena);
+            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena, Cuentas);
 
             // Asignar datos a la lista de cuentas
 
@@ -63,7 +63,7 @@ namespace GestionDeCuentaV3.Añadir
             cadena = $"{titular}\n{ingreso}\n{fechanac}\n{numcuenta}";
 
 
-            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena);
+            APIFichero.ApiFichero.EscribirFichero(Cuentas.NumCuenta, cadena, Cuentas);
 
             // Asignar datos a la lista de cuentas
 

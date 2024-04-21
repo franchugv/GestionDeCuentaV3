@@ -1,4 +1,6 @@
 ﻿using GestionDeCuentaV3.Añadir;
+using GestionDeCuentaV3.Consultar;
+using GestionDeCuentaV3.Eliminar;
 using GestionDeCuentaV3.Modificar;
 using R24_JesusCG_V1;
 using System;
@@ -41,8 +43,10 @@ namespace GestionDeCuentaV3.Principal
                             ControladorModificar.ControladorM(ListaCuentas);
                             break;
                         case OpcionesPrincipal.Eliminar:
+                            ControladorEliminar.ControladorDel(ListaCuentas);
                             break;
                         case OpcionesPrincipal.Consultar:
+                            ControladorConsultar.ControladorC(ListaCuentas);
                             break;
                     }
                 }

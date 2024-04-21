@@ -29,7 +29,7 @@ namespace GestionDeCuentaV3.Modificar
 
             cadena = $"{titular}\n{numcuenta}\n{ingreso}\n{fechanac}";
 
-            APIFichero.ApiFichero.EditarFichero(ListaC[EspecificarCuenta].NumCuenta, numCuentaAntiguo, cadena);
+            APIFichero.ApiFichero.EditarFichero(ListaC[EspecificarCuenta].NumCuenta, numCuentaAntiguo, cadena, ListaC[EspecificarCuenta]);
         }
     }
 }
